@@ -1,0 +1,20 @@
+{
+  "version": "connections-0.1",
+  "connections": [
+    {
+      "source": "root/Default/cloud.Api",
+      "target": "root/Default/cloud.Api/OnRequestHandler0",
+      "name": "post()"
+    },
+    {
+      "source": "root/Default/cloud.Api/OnRequestHandler0",
+      "target": "root/Default/$Closure1_0",
+      "name": "handle()"
+    },
+    {
+      "source": "root/Default/cloud.Api/OnRequestHandler0",
+      "target": "root/Default/website-counter",
+      "name": "inc()"
+    }
+  ]
+}
