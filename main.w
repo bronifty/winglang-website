@@ -18,6 +18,17 @@ website.addJson("config.json", { api: api.url });
 
 let counter = new cloud.Counter() as "website-counter";
 
+api.get("/", inflight (request) => {
+  return {
+    status: 200,
+    headers: {
+      "Content-Type" => "text/html",
+      "Access-Control-Allow-Origin" => "*",
+    },
+    body: "<div id=\"hello\" class=\"mt-4\">Hello, Wing</div>",
+  };
+});
+
 api.post("/hello-static", inflight (request) => {
   return {
     status: 200,
