@@ -4,13 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hello Wing</title>
-
-    <!-- Tailwind CSS Play CDN https://tailwindcss.com/docs/installation/play-cdn -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- <script
-      src="https://unpkg.com/htmx.org@1.9.3"
-      integrity="sha384-lVb3Rd/Ca0AxaoZg5sACe8FJKF0tnUgR2Kd7ehUOG5GCcROv5uBIZsOqovBAcWua"
-      crossorigin="anonymous"></script> -->
   </head>
 
   <body class="flex items-center justify-center h-screen">
@@ -24,9 +18,6 @@
       <div id="hello" class="mt-4"></div>
     </div>
     <script>
-      // Fetch the config file and apply the API URL to the button's hx-post attribute
-      // Could be avoided, when proxying the API through the website (cloudfront)
-
       let configData, helloButton, helloDiv;
       helloButton = document.getElementById("helloButton");
       helloDiv = document.getElementById("hello");
@@ -37,16 +28,9 @@
         configData = data;
         console.log(configData);
       }
-
-      // fetch("/config.json")
-      //   .then((response) => response.json())
-      //   .then((data) => {
-      //     configData = data;
-      //     console.log(configData);
-      //   });
+      getApi();
 
       async function clickHandler() {
-        await getApi();
         const res = await fetch(`${configData.api}/hello-static`, {
           method: "POST",
           body: "Hello, world!",
@@ -58,44 +42,3 @@
     </script>
   </body>
 </html>
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div id="responseArea"></div>
-
-    <button id="myButton">Make POST Request</button>
-
-    <script>
-      let apiUrl;
-      async function getApi() {
-        const res = await fetch("config.json");
-        const data = await res.json();
-        const { api } = data;
-        apiUrl = api.url;
-        const responseArea = document.getElementById("responseArea");
-        responseArea.textContent = apiUrl;
-      }
-
-      async function makePostRequest() {
-        const res = await fetch(`${apiUrl}/greet/world`, {
-          method: "POST",
-          body: "Hello, world!",
-        });
-        const response = await res.text();
-        const responseArea = document.getElementById("responseArea");
-        responseArea.textContent = response;
-      }
-
-      document.addEventListener("DOMContentLoaded", () => getApi());
-
-      const button = document.getElementById("myButton");
-      button.addEventListener("click", makePostRequest);
-    </script>
-  </body>
-</html> -->
