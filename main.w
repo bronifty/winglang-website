@@ -4,7 +4,7 @@ bring http;
 bring expect;
 
 let website = new cloud.Website(
-  path: "./client",
+  path: "./vite-client/dist",
 );
 
 let api = new cloud.Api({
