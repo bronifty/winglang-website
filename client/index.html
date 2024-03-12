@@ -18,10 +18,7 @@
       <h1 class="text-2xl font-bold">Hello, Wing</h1>
       <button
         id="helloButton"
-        class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        hx-trigger="click"
-        hx-swap="outerHTML"
-        hx-target="#hello">
+        class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
         Say Hello
       </button>
       <div id="hello" class="mt-4"></div>
@@ -30,30 +27,34 @@
       // Fetch the config file and apply the API URL to the button's hx-post attribute
       // Could be avoided, when proxying the API through the website (cloudfront)
 
-      var configData;
+      let configData, helloButton, helloDiv;
+      helloButton = document.getElementById("helloButton");
+      helloDiv = document.getElementById("hello");
 
-      fetch("/config.json")
-        .then((response) => response.json())
-        .then((data) => {
-          configData = data;
-          console.log(configData);
-        });
+      async function getApi() {
+        const res = await fetch("/config.json");
+        const data = await res.json();
+        configData = data;
+        console.log(configData);
+      }
 
-      var helloButton = document.getElementById("helloButton");
-      helloButton.addEventListener("click", function () {
-        fetch(`${configData.api}/hello-static`, {
+      // fetch("/config.json")
+      //   .then((response) => response.json())
+      //   .then((data) => {
+      //     configData = data;
+      //     console.log(configData);
+      //   });
+
+      async function clickHandler() {
+        await getApi();
+        const res = await fetch(`${configData.api}/hello-static`, {
           method: "POST",
-          body: JSON.stringify({}),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then((response) => response.text())
-          .then((result) => {
-            var helloDiv = document.getElementById("hello");
-            helloDiv.innerHTML = result;
-          });
-      });
+          body: "Hello, world!",
+        });
+        const response = await res.text();
+        helloDiv.innerHTML = response;
+      }
+      helloButton.addEventListener("click", clickHandler);
     </script>
   </body>
 </html>
