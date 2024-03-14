@@ -15,10 +15,10 @@ bring expect;
 
 class remixServer {  
   // inflight static method
-  pub extern "./client-vite-remix/url_utils.js" static inflight isValidUrl(url: str): bool;
+  pub extern "./client-vite-remix/server.js" inflight  isValidUrl(url: str): bool;
 }
 
-test "remixServer" {
+test "main" {
   assert(remixServer.isValidUrl("http://www.google.com"));
   assert(!remixServer.isValidUrl("X?Y"));
 }

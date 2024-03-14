@@ -3,10 +3,6 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
-let configData, helloButton, helloDiv;
-helloButton = document.getElementById("helloButton");
-helloDiv = document.getElementById("hello");
-
 function App() {
   const [configData, setConfigData] = React.useState("");
   const [responseText, setResponseText] = React.useState("");
@@ -32,15 +28,17 @@ function App() {
 
   return (
     <>
-      <div class="text-center">
-        <h1 class="text-2xl font-bold">Hello, Wing From React Client Vite</h1>
+      <div className="text-center">
+        <h1 className="text-2xl font-bold">
+          Hello, Wing From React Client Vite
+        </h1>
         <button
           id="helloButton"
-          class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
           onClick={handleClick}>
           Say Hello
         </button>
-        <div id="hello" class="mt-4">
+        <div id="hello" className="mt-4">
           {responseText}
         </div>
       </div>
