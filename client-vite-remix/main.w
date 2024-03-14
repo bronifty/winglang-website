@@ -15,7 +15,7 @@ bring expect;
 
 class remixServer {  
   // inflight static method
-  pub extern "./client-vite-remix/server.js" inflight  isValidUrl(url: str): bool;
+  pub extern "./client-vite-remix/server.js" inflight isValidUrl(url: str): bool;
 }
 
 test "main" {

@@ -15,13 +15,13 @@ bring expect;
 
 class remixServer {  
   // inflight static method
-  pub extern "./client-vite-remix/url_utils.js" static inflight isValidUrl(url: str): bool;
+  pub extern "./client-vite-remix/build/server/temp.js" static inflight route0(): str;
 }
 
-test "remixServer" {
-  assert(remixServer.isValidUrl("http://www.google.com"));
-  assert(!remixServer.isValidUrl("X?Y"));
-}
+// test "remixServer" {
+//   assert(remixServer.isValidUrl("http://www.google.com"));
+//   assert(!remixServer.isValidUrl("X?Y"));
+// }
 
 let website = new cloud.Website(
   path: "./client-vite-remix/build/client",
@@ -39,13 +39,14 @@ website.addJson("config.json", { api: api.url });
 let counter = new cloud.Counter() as "website-counter";
 
 api.get("/", inflight (request) => {
+  let response = remixServer.route0();
   return {
     status: 200,
     headers: {
       "Content-Type" => "text/html",
       "Access-Control-Allow-Origin" => "*",
     },
-    body: "<div id=\"hello\" class=\"mt-4\">Hello, Wing</div>",
+    body: response,
   };
 });
 
