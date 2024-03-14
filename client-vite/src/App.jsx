@@ -33,7 +33,7 @@ function App() {
   return (
     <>
       <div class="text-center">
-        <h1 class="text-2xl font-bold">Hello, Wing</h1>
+        <h1 class="text-2xl font-bold">Hello, Wing From React Client Vite</h1>
         <button
           id="helloButton"
           class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
